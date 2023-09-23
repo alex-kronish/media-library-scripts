@@ -42,7 +42,7 @@ if [ $ffmpgstatus -eq 0 ]; then
 	fi
 	#unmonitor
 	/data/encode/radarr_unmonitor.py --MovieID ${radarr_movie_id}
-	if [ $? -neq 0 ]; then
+	if [ $? -ne 0 ]; then
 		mv_string="$radarr_movie_title | Year $radarr_movie_year | Radarr Movie ID ${radarr_movie_id}"
 		/tools/bots/flamedramon_notify/flamedramon.py --Message "Something has gone wrong unmonitoring the Movie:\n $mv_string"
 	fi
