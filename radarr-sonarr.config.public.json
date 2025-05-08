@@ -1,0 +1,33 @@
+{
+    "opensubtitles_api_key":"",
+    "opensubtitles_user_id":"",
+    "opensubtitles_password":"",
+    "sonarr_api_key":"",
+    "sonarr_host":"http://localhost:8989/sonarr",
+    "radarr_api_key":"",
+    "radarr_host":"http://localhost:7878/radarr",
+    "lidarr_host":"http://localhost:8686/lidarr",
+    "lidarr_api_key":"",
+    "telegram_user_id":"",
+    "telegram_bot_api_key":"",
+    "ffmpeg_binary":"/usr/bin/ffmpeg",
+    "ffmpeg_encode_dir":"/data/encode/output/",
+    "preprocess_backup_dir":"/data/Unsorted/preprocess_backups/",
+    "disallowed_extensions":[".ts",".avi",".m4v",".mpeg",".wmv",".m2ts",".mpg",".rm",".mov",".flv"],
+    "sonarr_dir":"/data/Sonarr",
+    "radarr_dir":"/data/Radarr",
+    "plex_tv_dir":"/data/TV Shows",
+    "plex_movie_dir":"/data/Movies",
+    "log_dir":"/data/logs",
+    "name_overrides":{
+        "Taskmaster (SE)":"Taskmaster (SE) - Bast I Test (2017)",
+        "Taskmaster (NO)":"Taskmaster (NO) - Kongen Befaler (2019)",
+        "Taskmaster (FI)":"Taskmaster (FI) - Suurmestari (2020)",
+        "Taskmaster (DK)":"Taskmaster (DK) - Stormester (2018)",
+        "Taskmaster (HR)":"Taskmaster (HR) - Direktor Svemira (2021)",
+        "Taskmaster (BE)":"Taskmaster (BE) - Het Grootste Licht (2016)",
+        "Taskmaster (CA)":"Taskmaster (CA) - Le Maitre Du Jeu (2022)",
+        "7 Days (2009)":"7 Days (NZ)",
+        "Never Mind the Buzzcocks":"Never Mind the Buzzcocks (1996)"
+    }
+}
