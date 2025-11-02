@@ -1,0 +1,59 @@
+#!/tools/conda/envs/Plex/bin/python
+
+#----------------------------------------------------------
+import os
+import sys
+import subprocess
+import re
+#----------------------------------------------------------
+
+def create_dir_if_doesnt_exist(directory_path):
+    if os.path.exists(directory_path):
+        print("Directory already exists: "+directory_path)
+        return directory_path
+    else:
+        os.mkdir(directory_path)
+        print("Directory did not exist, creating: "+directory_path)
+        return directory_path
+
+def stdout_stderr_tuple_to_string(input_tuple):
+    z=[]
+    for x in input_tuple:
+        z.append(x.decode('utf-8'))
+    return z
+
+if __name__=='__main__':
+    sz_pattern=r'\.7z$|\.zip$|\.rar$|\.r00$|(?!\.tar\.gz$)\.gz$|\.tar$'
+    targz_pattern=r'\.tar.gz$'
+    cwd = os.getcwd()
+    complete_listing=os.listdir(cwd)
+    for file in complete_listing:
+        #print(file)
+        if os.path.isfile(file) and re.search(targz_pattern,file):
+            print("TAR.GZ MODE")
+            basename=os.path.basename(file)
+            print("Extraction Start! " + basename)
+            folder_name='dir_'+re.sub(targz_pattern,'',basename)
+            full_folder_path=os.path.join(cwd,folder_name)
+            create_dir_if_doesnt_exist(full_folder_path)
+            archive_file=os.path.join(cwd,file)
+            subproc=subprocess.Popen(['tar', 'xzvf', archive_file,'--one-top-level='+full_folder_path],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            output=stdout_stderr_tuple_to_string(subproc.communicate())
+            for o in output:
+                print(o)
+            print("Exit Code: "+str(subproc.returncode))
+            print("========================================================")
+        elif os.path.isfile(file) and re.search(sz_pattern,file):
+            print("7ZIP MODE")
+            basename=os.path.basename(file)
+            print("Extraction Start! " + basename)
+            folder_name='dir_'+re.sub(sz_pattern,'',basename)
+            full_folder_path=os.path.join(cwd,folder_name)
+            create_dir_if_doesnt_exist(full_folder_path)
+            archive_file=os.path.join(cwd,file)
+            subproc=subprocess.Popen(['7z', 'x', archive_file, '-o'+full_folder_path, '-aoa'],shell=False,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            output=stdout_stderr_tuple_to_string(subproc.communicate())
+            for o in output:
+                print(o)
+            print("Exit Code: "+str(subproc.returncode))
+            print("========================================================")
